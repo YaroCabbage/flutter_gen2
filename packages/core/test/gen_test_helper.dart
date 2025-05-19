@@ -31,9 +31,9 @@ Future<List<String>> runAssetsGen(
 
   final config = loadPubspecConfig(pubspecFile, buildFile: buildFile);
   final formatter = DartFormatter(
-    pageWidth: config.pubspec.flutterGen.lineLength,
-    lineEnding: '\n',
-  );
+      pageWidth: config.pubspec.flutterGen.lineLength,
+      lineEnding: '\n',
+      languageVersion: DartFormatter.latestLanguageVersion);
 
   final actual = await generateAssets(
     AssetsGenConfig.fromConfig(pubspecFile, config),
@@ -74,9 +74,9 @@ Future<List<String>> runColorsGen(
   final pubspecFile = File(pubspec);
   final config = loadPubspecConfig(pubspecFile);
   final formatter = DartFormatter(
-    pageWidth: config.pubspec.flutterGen.lineLength,
-    lineEnding: '\n',
-  );
+      pageWidth: config.pubspec.flutterGen.lineLength,
+      lineEnding: '\n',
+      languageVersion: DartFormatter.latestLanguageVersion);
 
   final actual = generateColors(
     pubspecFile,
@@ -117,9 +117,9 @@ Future<List<String>> runFontsGen(
   final pubspecFile = File(pubspec);
   final config = loadPubspecConfig(pubspecFile);
   final formatter = DartFormatter(
-    pageWidth: config.pubspec.flutterGen.lineLength,
-    lineEnding: '\n',
-  );
+      pageWidth: config.pubspec.flutterGen.lineLength,
+      lineEnding: '\n',
+      languageVersion: DartFormatter.latestLanguageVersion);
 
   final actual = generateFonts(
     FontsGenConfig.fromConfig(config),
@@ -151,9 +151,9 @@ Future<List<String>> runShadersGen(
 
   final config = loadPubspecConfig(pubspecFile, buildFile: buildFile);
   final formatter = DartFormatter(
-    pageWidth: config.pubspec.flutterGen.lineLength,
-    lineEnding: '\n',
-  );
+      pageWidth: config.pubspec.flutterGen.lineLength,
+      lineEnding: '\n',
+      languageVersion: DartFormatter.latestLanguageVersion);
 
   final actual = await generateShaders(
     ShadersGenConfig.fromConfig(pubspecFile, config),

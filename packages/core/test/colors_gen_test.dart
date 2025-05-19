@@ -23,7 +23,9 @@ void main() {
       final pubspec = File('test_resources/pubspec_colors_no_inputs.yaml');
       final config = loadPubspecConfig(pubspec);
       final formatter = DartFormatter(
-          pageWidth: config.pubspec.flutterGen.lineLength, lineEnding: '\n');
+          pageWidth: config.pubspec.flutterGen.lineLength,
+          lineEnding: '\n',
+          languageVersion: DartFormatter.latestLanguageVersion);
 
       expect(() {
         return generateColors(
@@ -35,7 +37,9 @@ void main() {
       final pubspec = File('test_resources/pubspec_colors_no_inputs_list.yaml');
       final config = loadPubspecConfig(pubspec);
       final formatter = DartFormatter(
-          pageWidth: config.pubspec.flutterGen.lineLength, lineEnding: '\n');
+          pageWidth: config.pubspec.flutterGen.lineLength,
+          lineEnding: '\n',
+          languageVersion: DartFormatter.latestLanguageVersion);
 
       expect(() {
         return generateColors(

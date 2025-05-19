@@ -34,7 +34,10 @@ class FlutterGenerator {
     final flutterGen = config.pubspec.flutterGen;
     final output = config.pubspec.flutterGen.output;
     final lineLength = config.pubspec.flutterGen.lineLength;
-    final formatter = DartFormatter(pageWidth: lineLength, lineEnding: '\n');
+    final formatter = DartFormatter(
+        pageWidth: lineLength,
+        lineEnding: '\n',
+        languageVersion: DartFormatter.latestLanguageVersion);
 
     void defaultWriter(String contents, String path) {
       final file = File(path);

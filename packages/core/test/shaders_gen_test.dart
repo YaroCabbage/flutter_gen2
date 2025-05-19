@@ -43,7 +43,9 @@ void main() {
       final pubspec = File('test_resources/pubspec_shaders_no_list.yaml');
       final config = loadPubspecConfig(pubspec);
       final formatter = DartFormatter(
-          pageWidth: config.pubspec.flutterGen.lineLength, lineEnding: '\n');
+          pageWidth: config.pubspec.flutterGen.lineLength,
+          lineEnding: '\n',
+          languageVersion: DartFormatter.latestLanguageVersion);
 
       expect(() {
         return generateShaders(
