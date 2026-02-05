@@ -16,6 +16,8 @@ Pubspec _$PubspecFromJson(Map json) => $checkedCreate(
         );
         final val = Pubspec(
           packageName: $checkedConvert('name', (v) => v as String),
+          environment: $checkedConvert(
+              'environment', (v) => _environmentFromJson(v as Map?)),
           flutterGen: $checkedConvert(
               'flutter_gen', (v) => FlutterGen.fromJson(v as Map)),
           flutter:
@@ -44,9 +46,15 @@ Flutter _$FlutterFromJson(Map json) => $checkedCreate(
                   .toList()),
           shaders: $checkedConvert('shaders',
               (v) => (v as List<dynamic>).map((e) => e as Object).toList()),
+          deferredComponents: $checkedConvert(
+              'deferred-components',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => FlutterDeferredComponents.fromJson(e as Map))
+                  .toList()),
         );
         return val;
       },
+      fieldKeyMap: const {'deferredComponents': 'deferred-components'},
     );
 
 FlutterFonts _$FlutterFontsFromJson(Map json) => $checkedCreate(
@@ -70,10 +78,21 @@ FlutterGen _$FlutterGenFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         $checkKeys(
           json,
-          requiredKeys: const [
+          allowedKeys: const [
             'output',
             'line_length',
             'parse_metadata',
+            'images',
+            'assets',
+            'fonts',
+            'shaders',
+            'integrations',
+            'colors'
+          ],
+          requiredKeys: const [
+            'output',
+            'parse_metadata',
+            'images',
             'assets',
             'fonts',
             'shaders',
@@ -83,8 +102,11 @@ FlutterGen _$FlutterGenFromJson(Map json) => $checkedCreate(
         );
         final val = FlutterGen(
           output: $checkedConvert('output', (v) => v as String),
-          lineLength: $checkedConvert('line_length', (v) => (v as num).toInt()),
+          lineLength:
+              $checkedConvert('line_length', (v) => (v as num?)?.toInt()),
           parseMetadata: $checkedConvert('parse_metadata', (v) => v as bool),
+          images: $checkedConvert(
+              'images', (v) => FlutterGenImages.fromJson(v as Map)),
           assets: $checkedConvert(
               'assets', (v) => FlutterGenAssets.fromJson(v as Map)),
           fonts: $checkedConvert(
@@ -110,6 +132,7 @@ FlutterGenColors _$FlutterGenColorsFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         $checkKeys(
           json,
+          allowedKeys: const ['enabled', 'inputs', 'outputs'],
           requiredKeys: const ['enabled', 'inputs', 'outputs'],
         );
         final val = FlutterGenColors(
@@ -129,6 +152,13 @@ FlutterGenAssets _$FlutterGenAssetsFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         $checkKeys(
           json,
+          allowedKeys: const [
+            'enabled',
+            'package_parameter_enabled',
+            'style',
+            'outputs',
+            'exclude'
+          ],
           requiredKeys: const ['enabled', 'outputs', 'exclude'],
         );
         final val = FlutterGenAssets(
@@ -148,12 +178,30 @@ FlutterGenAssets _$FlutterGenAssetsFromJson(Map json) => $checkedCreate(
       },
     );
 
+FlutterGenImages _$FlutterGenImagesFromJson(Map json) => $checkedCreate(
+      'FlutterGenImages',
+      json,
+      ($checkedConvert) {
+        $checkKeys(
+          json,
+          allowedKeys: const ['parse_animation'],
+          requiredKeys: const ['parse_animation'],
+        );
+        final val = FlutterGenImages(
+          parseAnimation: $checkedConvert('parse_animation', (v) => v as bool),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'parseAnimation': 'parse_animation'},
+    );
+
 FlutterGenFonts _$FlutterGenFontsFromJson(Map json) => $checkedCreate(
       'FlutterGenFonts',
       json,
       ($checkedConvert) {
         $checkKeys(
           json,
+          allowedKeys: const ['enabled', 'outputs'],
           requiredKeys: const ['enabled', 'outputs'],
         );
         final val = FlutterGenFonts(
@@ -172,25 +220,18 @@ FlutterGenIntegrations _$FlutterGenIntegrationsFromJson(Map json) =>
       ($checkedConvert) {
         $checkKeys(
           json,
-          requiredKeys: const [
-            'flutter_svg',
-            'flare_flutter',
-            'rive',
-            'lottie'
-          ],
+          allowedKeys: const ['image', 'flutter_svg', 'rive', 'lottie'],
+          requiredKeys: const ['image', 'flutter_svg', 'rive', 'lottie'],
         );
         final val = FlutterGenIntegrations(
+          image: $checkedConvert('image', (v) => v as bool),
           flutterSvg: $checkedConvert('flutter_svg', (v) => v as bool),
-          flareFlutter: $checkedConvert('flare_flutter', (v) => v as bool),
           rive: $checkedConvert('rive', (v) => v as bool),
           lottie: $checkedConvert('lottie', (v) => v as bool),
         );
         return val;
       },
-      fieldKeyMap: const {
-        'flutterSvg': 'flutter_svg',
-        'flareFlutter': 'flare_flutter'
-      },
+      fieldKeyMap: const {'flutterSvg': 'flutter_svg'},
     );
 
 FlutterGenElementOutputs _$FlutterGenElementOutputsFromJson(Map json) =>
@@ -200,6 +241,7 @@ FlutterGenElementOutputs _$FlutterGenElementOutputsFromJson(Map json) =>
       ($checkedConvert) {
         $checkKeys(
           json,
+          allowedKeys: const ['class_name'],
           requiredKeys: const ['class_name'],
         );
         final val = FlutterGenElementOutputs(
@@ -218,6 +260,12 @@ FlutterGenElementAssetsOutputs _$FlutterGenElementAssetsOutputsFromJson(
       ($checkedConvert) {
         $checkKeys(
           json,
+          allowedKeys: const [
+            'class_name',
+            'package_parameter_enabled',
+            'directory_path_enabled',
+            'style'
+          ],
           requiredKeys: const ['class_name', 'style'],
         );
         final val = FlutterGenElementAssetsOutputs(
@@ -226,7 +274,8 @@ FlutterGenElementAssetsOutputs _$FlutterGenElementAssetsOutputsFromJson(
               'package_parameter_enabled', (v) => v as bool? ?? false),
           directoryPathEnabled: $checkedConvert(
               'directory_path_enabled', (v) => v as bool? ?? false),
-          style: $checkedConvert('style', (v) => v as String),
+          style: $checkedConvert('style',
+              (v) => FlutterGenElementAssetsOutputsStyle.fromJson(v as String)),
         );
         return val;
       },
@@ -245,6 +294,7 @@ FlutterGenElementFontsOutputs _$FlutterGenElementFontsOutputsFromJson(
       ($checkedConvert) {
         $checkKeys(
           json,
+          allowedKeys: const ['class_name', 'package_parameter_enabled'],
           requiredKeys: const ['class_name'],
         );
         final val = FlutterGenElementFontsOutputs(
@@ -257,5 +307,24 @@ FlutterGenElementFontsOutputs _$FlutterGenElementFontsOutputsFromJson(
       fieldKeyMap: const {
         'className': 'class_name',
         'packageParameterEnabled': 'package_parameter_enabled'
+      },
+    );
+
+FlutterDeferredComponents _$FlutterDeferredComponentsFromJson(Map json) =>
+    $checkedCreate(
+      'FlutterDeferredComponents',
+      json,
+      ($checkedConvert) {
+        $checkKeys(
+          json,
+          allowedKeys: const ['name', 'assets'],
+          requiredKeys: const ['name'],
+        );
+        final val = FlutterDeferredComponents(
+          name: $checkedConvert('name', (v) => v as String),
+          assets: $checkedConvert('assets',
+              (v) => (v as List<dynamic>?)?.map((e) => e as Object).toList()),
+        );
+        return val;
       },
     );
