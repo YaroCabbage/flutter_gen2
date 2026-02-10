@@ -130,14 +130,7 @@ ${isPackage ? "\n  static const String package = '$packageName';" : ''}
     }
     if (asset.mime == 'application/zip') {
       final inputStream = InputFileStream(asset.fullPath);
-      final decoder = ZipDecoder();
-      Archive archive;
-      try {
-        // Compatible with archive v4.
-        archive = (decoder as dynamic).decodeStream(inputStream);
-      } on NoSuchMethodError {
-        archive = (decoder as dynamic).decodeBuffer(inputStream);
-      }
+      final archive = ZipDecoder().decodeStream(inputStream);
       final jsonFile = archive.files.firstWhereOrNull(
         (e) => e.name.endsWith('.json'),
       );

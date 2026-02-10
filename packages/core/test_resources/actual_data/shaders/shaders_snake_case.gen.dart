@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 class Shaders {
   Shaders._();
@@ -39,12 +39,12 @@ class Shaders {
 
   /// List of all shaders
   static List<String> get values => [
-        assets_shaders_shader1,
-        assets_shaders_summer_shaders_shader1,
-        assets_shaders_summer_shaders_summer,
-        assets_shaders_winter_shaders_holiday_shaders_holiday,
-        assets_shaders_winter_shaders_holiday_shaders_shader1,
-        assets_shaders_winter_shaders_shader1,
-        assets_shaders_winter_shaders_winter
-      ];
+    assets_shaders_shader1,
+    assets_shaders_summer_shaders_shader1,
+    assets_shaders_summer_shaders_summer,
+    assets_shaders_winter_shaders_holiday_shaders_holiday,
+    assets_shaders_winter_shaders_holiday_shaders_shader1,
+    assets_shaders_winter_shaders_shader1,
+    assets_shaders_winter_shaders_winter,
+  ];
 }

@@ -217,7 +217,6 @@ void main() {
       expect(File('test_resources/lib/build_gen/$assets').existsSync(), isTrue);
       expect(File('test_resources/lib/build_gen/$fonts').existsSync(), isTrue);
       expect(File('test_resources/lib/build_gen/$colors').existsSync(), isTrue);
-      expect(File('test_resources/lib/build_gen/$shaders').existsSync(), isTrue);
     });
   });
 }

@@ -6,7 +6,7 @@ flutter_gen:
 
   integrations:
     flutter_svg: true
-    flare_flutter: true
+    rive: true
 
 flutter:
   shaders:

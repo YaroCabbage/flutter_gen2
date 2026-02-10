@@ -138,18 +138,16 @@ Future<String> generateShaders(
   }
 
   final classesBuffer = StringBuffer();
-  if (config.flutterGen.shaders.outputs.isDotDelimiterStyle) {
-    final definition = await _dotDelimiterStyleDefinition(config);
-    classesBuffer.writeln(definition);
-  } else if (config.flutterGen.shaders.outputs.isSnakeCaseStyle) {
-    final definition = await _snakeCaseStyleDefinition(config);
-    classesBuffer.writeln(definition);
-  } else if (config.flutterGen.shaders.outputs.isCamelCaseStyle) {
-    final definition = await _camelCaseStyleDefinition(config);
-    classesBuffer.writeln(definition);
-  } else {
-    throw 'The value of "flutter_gen/shaders/style." is incorrect.';
+  final Future<String> Function(ShadersGenConfig) definition;
+  switch (config.flutterGen.shaders.outputs.style) {
+    case FlutterGenElementAssetsOutputsStyle.dotDelimiterStyle:
+      definition = _dotDelimiterStyleDefinition;
+    case FlutterGenElementAssetsOutputsStyle.snakeCaseStyle:
+      definition = _snakeCaseStyleDefinition;
+    case FlutterGenElementAssetsOutputsStyle.camelCaseStyle:
+      definition = _camelCaseStyleDefinition;
   }
+  classesBuffer.writeln(await definition(config));
 
   final imports = <Import>{};
 

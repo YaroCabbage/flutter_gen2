@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 class $AssetsGen {
   const $AssetsGen();
@@ -21,12 +21,10 @@ class $AssetsShadersGen {
   String get shader1 => 'assets/shaders/shader1.frag';
 
   /// Directory path: assets/shaders/summer_shaders
-  $AssetsShadersSummerShadersGen get summerShaders =>
-      const $AssetsShadersSummerShadersGen();
+  $AssetsShadersSummerShadersGen get summerShaders => const $AssetsShadersSummerShadersGen();
 
   /// Directory path: assets/shaders/winter_shaders
-  $AssetsShadersWinterShadersGen get winterShaders =>
-      const $AssetsShadersWinterShadersGen();
+  $AssetsShadersWinterShadersGen get winterShaders => const $AssetsShadersWinterShadersGen();
 
   /// List of all shaders
   List<String> get values => [shader1];
@@ -66,12 +64,10 @@ class $AssetsShadersWinterShadersHolidayShadersGen {
   const $AssetsShadersWinterShadersHolidayShadersGen();
 
   /// File path: assets/shaders/winter_shaders/holiday_shaders/holiday.frag
-  String get holiday =>
-      'assets/shaders/winter_shaders/holiday_shaders/holiday.frag';
+  String get holiday => 'assets/shaders/winter_shaders/holiday_shaders/holiday.frag';
 
   /// File path: assets/shaders/winter_shaders/holiday_shaders/shader1.frag
-  String get shader1 =>
-      'assets/shaders/winter_shaders/holiday_shaders/shader1.frag';
+  String get shader1 => 'assets/shaders/winter_shaders/holiday_shaders/shader1.frag';
 
   /// List of all shaders
   List<String> get values => [holiday, shader1];
